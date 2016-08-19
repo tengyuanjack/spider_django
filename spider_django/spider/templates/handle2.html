@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Handle2</title>
+</head>
+<body>
+    <table align="center">
+        <tr>
+            <th>Name</th>
+            <th>Ranking</th>
+            <th>useful_percent</th>
+        </tr>
+        <tr>
+            <td align="left" style="border: #7df0ad solid 2px">{{ personnal_info.name }}</td>
+            <td align="center" style="border: #7df0ad solid 2px">{{ personnal_info.ranking }}</td>
+            <td align="right" style="border: #7df0ad solid 2px">{{ personnal_info.useful_percent }} ( {{ personnal_info.useful_ok }} / {{ personnal_info.useful_total }} )</td>
+        </tr>
+    </table>
+    <h4 align="center">历史评论（共{{ totalHistory }}条）</h4>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Star</th>
+            <th>Suggestion</th>
+            <th>Helpful</th>
+            <th>Comment_time</th>
+            <th>Comment</th>
+        </tr>
+        {% for history in history_list %}
+            <tr>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ history.title }}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ history.star }}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ history.suggestion }}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ history.item_useful_ok }} / {{ history.item_useful_total }}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ history.comment_time}}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ history.comment }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</body>
+</html>

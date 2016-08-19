@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <link rel="stylesheet"  type="text/css" href="{{ STATIC_URL }}css/style.css">
+    <title>抓取数据界面</title>
+
+</head>
+<body>
+
+<fieldset>
+    <legend>新功能（手机）：</legend>
+    <b>1.输入手机畅销榜链接，获取手机链接，放到list.txt中</b>
+    <form action="{% url 'handle3' %}" method="post">
+        {% csrf_token %}
+       <table align="center">
+            <tr>
+                <td><input type="radio" name="radioType" value="0" checked="checked">手机<input type="radio" name="radioType" value="1">图书</td>
+                <td><input type="text" name="sort_page_url" style="width:500px;height: 30px;"></td>
+                <td><input type="submit" value="Fetch"  style="width:70px;height: 30px;"></td>
+            </tr>
+        </table>
+    </form>
+
+     <b>2.获取各个手机的基本信息，并存入数据库</b>
+     <form action="{% url 'handle4' %}" method="post" align="center">
+         {% csrf_token %}
+         <input type="submit" value="Continue" style="width:70px;height: 30px;">
+     </form>
+
+    <b>3.把手机的所有评价页面都存到*.comment文件中</b>
+     <form action="{% url 'handle5' %}" method="post" align="center">
+         {% csrf_token %}
+         <input type="submit" value="Continue" style="width:70px;height: 30px;">
+     </form>
+
+    <b>4.获取评价信息条目，并存入数据库</b>
+     <form action="{% url 'handle6' %}" method="post" align="center">
+         {% csrf_token %}
+         <input type="submit" value="Continue" style="width:70px;height: 30px;">
+     </form>
+
+    <b>5.将所有评论人的页面存入*.user文件中</b>
+     <form action="{% url 'handle7' %}" method="post" align="center">
+         {% csrf_token %}
+         <input type="submit" value="Continue" style="width:70px;height: 30px;">
+     </form>
+
+    <b>6.获取评论人各个数据，并存入数据库</b>
+     <form action="{% url 'handle8' %}" method="post" align="center">
+         {% csrf_token %}
+         老方法（网站改版，不可再用）：<input type="submit" value="Continue" style="width:70px;height: 30px;" disabled="disabled">
+     </form>
+    <form action="{% url 'handle9' %}" method="post" align="center">
+         {% csrf_token %}
+         新方法（获取简单的用户排名信息）：<input type="submit" value="Continue" style="width:70px;height: 30px;">
+     </form>
+    <hr>
+    <b>【7.】分析评论情感，存入数据库</b>
+     <form action="{% url 'sentiment' %}" method="post" align="center">
+         {% csrf_token %}
+         分析范围: <input type="text" name="start" style="width: 50px;"/> ---- <input type="text" name="end" style="width: 50px;"/>
+         <input type="submit" value="Analyse" style="width:70px;height: 30px;">
+     </form>
+
+    <hr>
+    <b>【8.】分析用户简短评价情感，并更新数据库</b>
+    <form action="{% url 'sentiment2' %}" method="post" align="center">
+         {% csrf_token %}
+         分析范围: <input type="text" name="start" style="width: 50px;"/> ---- <input type="text" name="end" style="width: 50px;"/>
+         <input type="submit" value="Analyse" style="width:70px;height: 30px;">
+     </form>
+
+    <div>
+        <a href="{% url 'deleteGlobalVar' %}"  style="text-decoration: none; float:right;" class="notsure">清空global变量</a>
+        <a href="{% url 'deleteUserFile' %}"  style="text-decoration: none; float:right;margin-right: 50px;" class="notsure">删除*.user</a>
+        <a href="{% url 'deleteCommentFile' %}"  style="text-decoration: none; float:right; margin-right: 50px;" class="notsure">删除*.comment</a>
+    </div>
+
+</fieldset>
+
+{#<fieldset>#}
+{#    <legend>旧功能：</legend>#}
+{#    <form action="{% url 'handle1' %}" method="post">#}
+{#        {% csrf_token %}#}
+{#        <table align="center" style="margin-top: 50px;margin-left:auto;margin-right:auto;">#}
+{#            <tr>#}
+{#                <td align="right">URL:</td>#}
+{#                <td><input type="text" name="url" style="width:500px;height: 30px;"></td>#}
+{#            </tr>#}
+{#            <tr><td>&nbsp;</td></tr>#}
+{#            <tr>#}
+{#                <td align="right">Quantity:</td>#}
+{#                <td>#}
+{#                    <input type="radio" name="num" value="one" checked="checked">1#}
+{#                    <input type="radio" name="num" value="two">2#}
+{#                    <input type="radio" name="num" value="quarter">quarter#}
+{#                    <input type="radio" name="num" value="half">half#}
+{#                    <input type="radio" name="num" value="all">all#}
+{#                    &nbsp;&nbsp;&nbsp;#}
+{#                    <input type="radio" name="num" value="option"><input type="text" name="num1" style="width:50px;height:20px;"> to <input type="text" name="num2" style="width:50px;height:20px;">#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr><td>&nbsp;</td></tr>#}
+{#            <tr>#}
+{#                <td align="right">NeedDb:</td>#}
+{#                <td>#}
+{#                    <input type="radio" name="needDb" value="0" checked="checked">No#}
+{#                    <input type="radio" name="needDb" value="1">Yes#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr><td>&nbsp;</td></tr>#}
+{#            <tr>#}
+{#                <td colspan="2" align="center"><input type="submit" value="Fetch" style="width:100px;height: 30px;"></td>#}
+{#            </tr>#}
+{#        </table>#}
+{#    </form>#}
+{#    <br><br>#}
+{#    <form action="{% url 'handle2' %}" method="post">#}
+{#        {% csrf_token %}#}
+{#        <table align="center" style="margin-left:auto;margin-right:auto;">#}
+{#            <tr>#}
+{#                <td>User-URL:</td>#}
+{#                <td><input type="text" name="user_url" style="width:500px;height: 30px;"></td>#}
+{#                <td><input type="submit" value="Fetch"  style="width:70px;height: 30px;"></td>#}
+{#            </tr>#}
+{#        </table>#}
+{#    </form>#}
+{#</fieldset>#}
+
+
+
+
+</body>
+</html>

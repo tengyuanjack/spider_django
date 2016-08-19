@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css">
+    <title>Handle1</title>
+
+</head>
+<body>
+    <table>
+        <tr>
+            <th colspan="5" align="center">{{ title }}(共{{ totalCommentNum }}条)</th>
+        </tr>
+        <tr>
+            <th>留言者</th>
+            <th>留言时间</th>
+            <th>打星</th>
+            <th>认为有用</th>
+            <th>留言内容</th>
+        </tr>
+
+        {% for item in res_list %}
+            <tr>
+                <td style="border: #8b90f0 solid 2px"><a href="http://{{ item.author_href }}">{{ item.author }}</a></td>
+                <td style="border: #8b90f0 solid 2px">{{ item.comment_time }}</td>
+                <td style="border: #8b90f0 solid 2px">{{ item.star }}</td>
+                <td style="border: #8b90f0 solid 2px">{{ item.helpful }}</td>
+                <td style="border: #8b90f0 solid 2px">{{ item.comment }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+
+    <table>
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Star</th>
+            <th>Suggestion</th>
+            <th>Helpful</th>
+            <th>Comment_time</th>
+            <th>Comment</th>
+        </tr>
+        {% for item_item in userInfo_list %}
+            <tr>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ item_item.author }}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ item_item.title }}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ item_item.star }}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ item_item.suggestion }}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ item_item.help }}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ item_item.comment_time}}</td>
+                <td align="center" style="border: #8b90f0 solid 2px">{{ item_item.comment }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</body>
+</html>
